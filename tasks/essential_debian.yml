@@ -1,0 +1,7 @@
+- name: Ensure some essentials are installed
+  apt:
+        name:
+                - git
+                - nano
+                - python3-pip
+        state: present
