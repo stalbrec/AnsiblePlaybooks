@@ -1,0 +1,23 @@
+---
+- hosts: MultiPurposeServer
+  become: yes
+  tasks:
+        - import_tasks: tasks/essential_debian.yml
+        - name: Ensure dependencies are installed
+          apt:
+                name:
+                        - docker
+                        - docker-compose
+                state: present
+        - name: Ensure python dependencies are installed
+          pip:
+                name:
+                        - docker
+                state: present
+        - name: Ensuring TSD repo is cloned
+          ansible.builtin.git:
+                repo: 'https://github.com/TheSpaghettiDetective/TheSpaghettiDetective.git'
+                dest: /root/TSD
+        - name: deploy TSD via docker compose
+          docker_compose:
+                project_src: /root/TSD/
