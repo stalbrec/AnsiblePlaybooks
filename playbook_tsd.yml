@@ -14,10 +14,10 @@
                 name:
                         - docker
                 state: present
-        - name: Ensuring TSD repo is cloned
+        - name: Ensuring obico repo is cloned
           ansible.builtin.git:
-                repo: 'https://github.com/TheSpaghettiDetective/TheSpaghettiDetective.git'
-                dest: /root/TSD
-        - name: deploy TSD via docker compose
+                repo: 'https://github.com/TheSpaghettiDetective/obico-server.git'
+                dest: /root/obico
+        - name: deploy obico via docker compose
           docker_compose:
-                project_src: /root/TSD/
+                project_src: /root/obico/
